@@ -10,4 +10,6 @@ urlpatterns = [
 
     url(r'^registration/$', register, name='register'),
     url(r'^registration/success/$', success_register, name='success'),
+    url(r'^course/$', course, name='course'),
+    
 ]

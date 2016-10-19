@@ -2,19 +2,17 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect, HttpResponse
 #from website.formfill.forms import UserForm
-from .forms import UserForm
+from .forms import UserForm, CourseForm
 
 def register(request):
     if request.method == 'POST':
         form   = UserForm(request.POST) # look down for the output
         if form.is_valid():
-            print "form['username']===",form['username']
-            #form['username']=== <input id="id_username" maxlength="100" name="username" type="text" value="farhat" />
-#             user = User.objects.create_user(
-#             username=form.cleaned_data['username'],
-#             password=form.cleaned_data['password1'],
-#             email=form.cleaned_data['email']
-#             )
+            user = User.objects.create_user(
+            username=form.cleaned_data['username'],
+            password=form.cleaned_data['password1'],
+            email=form.cleaned_data['email']
+             )
             return HttpResponseRedirect('success/')## this is a url address 
     else:
         form = UserForm()
@@ -23,8 +21,6 @@ def register(request):
             
 def success_register(request):
     return render(request, 'registration_success.html')
-
-
 
 '''
 form   = UserForm(request.POST)=========> <tr><th><label for="id_username">Username:</label></th><td><input id="id_username" maxlength="100" name="username" type="text" value="farhat" /></td></tr>
@@ -35,3 +31,33 @@ form   = UserForm(request.POST)=========> <tr><th><label for="id_username">Usern
 
 form.cleaned_data==> {'username': u'farhat', 'password1': u'123', 'password2': u'123', 'email': u'1@gmail.com'}
 '''
+
+def course(request):
+    if request.method=='POST':
+        course = CourseForm(request.POST)
+        if course.is_valid():
+            course.save()
+            return HttpResponse("Thank you for the suggestion :)") ## this is a url address 
+    else:
+        course = CourseForm()
+        print course
+        
+    return render(request, 'course.html', {'course':course})
+            
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

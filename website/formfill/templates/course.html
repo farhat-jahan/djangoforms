@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Enter Course{% endblock %}
+{% block head %}Enter Course{% endblock %}
+{% block content %}
+    <form method="post" action=".">
+        <table border="0">
+            {{ course.as_table }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

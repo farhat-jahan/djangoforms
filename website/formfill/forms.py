@@ -1,5 +1,7 @@
 #https://docs.djangoproject.com/en/1.10/ref/forms/
 from django import forms
+from .models import Course
+from django.forms.models import ModelForm
 
 class UserForm(forms.Form):
     
@@ -9,6 +11,10 @@ class UserForm(forms.Form):
     password2 = forms.CharField(max_length=30)
 
 
+class CourseForm(ModelForm):
+    class Meta:
+        model = Course
+        fields = ['name', 'duration', 'user_name', 'contact', 'address', 'email']
 
     
 
